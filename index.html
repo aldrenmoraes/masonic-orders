@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masonic Orders — Paths of Initiation</title>
+<meta name="description" content="An interactive map of Masonic orders and the prerequisites required to seek initiation into each.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="page-header">
+    <div class="lang-switch" role="group" data-i18n-attr="langLabel" aria-label="Language">
+      <div class="lang-switch__options" id="lang-options"></div>
+    </div>
+    <p class="eyebrow" data-i18n="eyebrow">Order of Progression</p>
+    <h1 data-i18n="title">Masonic Orders &amp; Paths of Initiation</h1>
+    <p class="lede" data-i18n="lede">
+      A map of the Masonic degrees and appendant orders open to Master Masons, and the
+      prerequisites that lead from Craft Freemasonry toward each one.
+    </p>
+  </header>
+
+  <main class="chart-shell" aria-label="Masonic orders hierarchy diagram">
+
+    <div class="diagram-fit" id="diagram-fit">
+    <div class="diagram" id="diagram">
+      <svg class="connectors" id="connectors" preserveAspectRatio="none" aria-hidden="true"></svg>
+
+      <!-- TIER 3 : Supreme / culminating orders -->
+      <section class="tier tier-3" data-tier="3" aria-label="Culminating orders">
+        <article class="node" id="hw" data-logo-ext="png" data-requires="hratp" data-faith="trinitarian">
+          <span class="node__icon" data-icon="wisdom"></span>
+          <span class="node__label">Order of Holy Wisdom</span>
+        </article>
+        <article class="node" id="hratp" data-logo-ext="jpg" data-requires="ktkm" data-faith="trinitarian">
+          <span class="node__icon" data-icon="templar-priest"></span>
+          <span class="node__label">Order of Holy Royal Arch Knight Templar Priests</span>
+        </article>
+        <article class="node" id="stac" data-logo-ext="png" data-requires="ktkm" data-faith="trinitarian">
+          <span class="node__icon" data-icon="cross-shield"></span>
+          <span class="node__label">Order of St Thomas of Acon</span>
+        </article>
+        <article class="node" id="kbhc" data-logo-ext="png" data-requires="ktkm" data-faith="trinitarian">
+          <span class="node__icon" data-icon="lamp"></span>
+          <span class="node__label">Order of Knights Beneficent of the Holy City</span>
+        </article>
+        <article class="node node--branch" id="trowel" data-logo-ext="png" data-requires="rsm" data-faith="all">
+          <span class="node__icon" data-icon="trowel"></span>
+          <span class="node__label">Order of the Silver Trowel</span>
+        </article>
+      </section>
+
+      <!-- TIER 2 : Appendant chivalric / cryptic orders -->
+      <section class="tier tier-2" data-tier="2" aria-label="Appendant orders">
+        <article class="node" id="eri" data-logo-ext="png" data-requires="sria" data-faith="trinitarian">
+          <span class="node__icon" data-icon="celtic-cross"></span>
+          <span class="node__label">Royal Order of Eri</span>
+        </article>
+        <article class="node" id="athelstan" data-logo-ext="jpg" data-requires="hra" data-faith="all">
+          <span class="node__icon" data-icon="crown"></span>
+          <span class="node__label">Order of Athelstan</span>
+        </article>
+        <article class="node" id="ktkm" data-logo-ext="png" data-requires="hra" data-faith="trinitarian">
+          <span class="node__icon" data-icon="templar-cross"></span>
+          <span class="node__label">Order of Knights Templar and Knights of Malta</span>
+        </article>
+        <article class="node" id="rcc" data-logo-ext="png" data-requires="hra" data-faith="trinitarian">
+          <span class="node__icon" data-icon="red-cross"></span>
+          <span class="node__label">Order of the Red Cross of Constantine</span>
+        </article>
+        <article class="node" id="amd" data-logo-ext="jpg" data-requires="hra mmm" data-faith="all">
+          <span class="node__icon" data-icon="cluster"></span>
+          <span class="node__label">Order of the Allied Masonic Degrees</span>
+        </article>
+        <article class="node" id="rsm" data-logo-ext="png" data-requires="hra mmm" data-faith="all">
+          <span class="node__icon" data-icon="key-crown"></span>
+          <span class="node__label">Order of Royal and Select Masters</span>
+        </article>
+        <article class="node" id="km" data-logo-ext="jpg" data-requires="hra mmm" data-faith="all">
+          <span class="node__icon" data-icon="star"></span>
+          <span class="node__label">Order of Knight Masons</span>
+        </article>
+        <article class="node" id="rram" data-logo-ext="png" data-requires="mmm" data-faith="all">
+          <span class="node__icon" data-icon="ark"></span>
+          <span class="node__label">Fraternity of Royal Ark Mariners</span>
+        </article>
+        <article class="node" id="sc" data-logo-ext="png" data-requires="som" data-faith="all">
+          <span class="node__icon" data-icon="cord"></span>
+          <span class="node__label">Order of the Scarlet Cord</span>
+        </article>
+      </section>
+
+      <!-- annotation between tier 1 and tier 2 -->
+      <div class="note" id="note-mmm" data-i18n="noteBox">
+        Members are required to be Mark Master&nbsp;Masons as well as Royal&nbsp;Arch&nbsp;Masons
+      </div>
+
+      <!-- TIER 1 : First degrees beyond the Craft -->
+      <section class="tier tier-1" data-tier="1" aria-label="First appendant degrees">
+        <article class="node" id="sria" data-logo-ext="png" data-requires="craft" data-faith="trinitarian">
+          <span class="node__icon" data-icon="rose-cross"></span>
+          <span class="node__label">Societas Rosicruciana in Anglia</span>
+        </article>
+        <article class="node" id="ros" data-logo-ext="png" data-requires="craft" data-faith="trinitarian">
+          <span class="node__icon" data-icon="triangle"></span>
+          <span class="node__label">Royal Order of Scotland</span>
+        </article>
+        <article class="node" id="aar" data-logo-ext="jpg" data-requires="craft" data-faith="trinitarian">
+          <span class="node__icon" data-icon="eagle"></span>
+          <span class="node__label">Ancient and Accepted Rite</span>
+        </article>
+        <article class="node" id="hra" data-logo-ext="svg" data-requires="craft" data-faith="all">
+          <span class="node__icon" data-icon="arch"></span>
+          <span class="node__label">Order of the Holy Royal Arch</span>
+        </article>
+        <article class="node" id="mmm" data-logo-ext="png" data-requires="craft" data-faith="all">
+          <span class="node__icon" data-icon="key"></span>
+          <span class="node__label">Order of Mark Master Masons</span>
+        </article>
+        <article class="node" id="som" data-logo-ext="png" data-requires="craft" data-faith="all">
+          <span class="node__icon" data-icon="lantern"></span>
+          <span class="node__label">Order of the Secret Monitor</span>
+        </article>
+      </section>
+
+      <!-- ROOT : Craft Freemasonry -->
+      <section class="tier tier-0" data-tier="0" aria-label="Craft Freemasonry, the foundation">
+        <article class="node node--root" id="craft" data-logo-ext="svg">
+          <span class="node__icon" data-icon="square-compass"></span>
+          <span class="node__label">Craft Freemasonry</span>
+        </article>
+        <ul class="degrees">
+          <li><span>3°</span> <span data-i18n="degreeMaster">Master Mason</span></li>
+          <li><span>2°</span> <span data-i18n="degreeFellow">Fellow Craft</span></li>
+          <li><span>1°</span> <span data-i18n="degreeEntered">Entered Apprentice</span></li>
+        </ul>
+        <aside class="legend" aria-label="Legend">
+          <ul>
+            <li><span class="dot dot--all" aria-hidden="true"></span> <strong>Orange</strong> <span data-i18n="legendAll">admit all faiths</span></li>
+            <li><span class="dot dot--trinitarian" aria-hidden="true"></span> <strong>Green</strong> <span data-i18n="legendTrinitarian">admit only Trinitarian Christians</span></li>
+          </ul>
+          <p class="legend-note" data-i18n="legendNote">In some cases, candidates must fulfil additional entry requirements.</p>
+        </aside>
+      </section>
+
+    </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>Reference diagram, redrawn for the web. Structure follows common English/Irish constitution practice — individual jurisdictions vary.</p>
+  </footer>
+
+</div>
+
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

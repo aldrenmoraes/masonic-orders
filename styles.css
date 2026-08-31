@@ -1,0 +1,469 @@
+/* ---------------------------------------------------------
+   Masonic Orders — Paths of Initiation
+   Design tokens
+--------------------------------------------------------- */
+:root {
+  --bg: #0b0e14;
+  --bg-radial: #121722;
+  --surface: #161b26;
+  --surface-raised: #1c2230;
+  --border: rgba(201, 168, 76, 0.22);
+  --border-soft: rgba(255, 255, 255, 0.08);
+
+  --gold: #c9a84c;
+  --gold-bright: #e8cf7a;
+  --gold-dim: rgba(201, 168, 76, 0.45);
+
+  --orange: #e08a3c;
+  --orange-bright: #f4ad6b;
+  --orange-dim: rgba(224, 138, 60, 0.45);
+
+  --green: #4caf7d;
+  --green-bright: #7fd6a8;
+  --green-dim: rgba(76, 175, 125, 0.45);
+
+  --text: #eef0f4;
+  --text-muted: #9aa2b1;
+  --text-faint: #6b7280;
+
+  --line: rgba(201, 168, 76, 0.55);
+
+  --font-display: "Cinzel", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --radius: 14px;
+  --node-w: 168px;
+  --node-h: 168px;
+}
+
+* { box-sizing: border-box; }
+html { color-scheme: dark; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, var(--bg-radial), var(--bg) 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  position: relative;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 40px 24px 56px;
+}
+
+/* ---------------------------------------------------------
+   Language switcher
+--------------------------------------------------------- */
+.lang-switch {
+  position: absolute;
+  top: 40px;
+  right: 24px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+}
+
+.lang-switch__options {
+  display: flex;
+  gap: 6px;
+}
+
+.lang-switch__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  line-height: 1;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 50%;
+  cursor: pointer;
+  filter: grayscale(1) opacity(0.6);
+  transition: filter 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.lang-switch__btn:hover {
+  filter: grayscale(0.4) opacity(0.85);
+  border-color: var(--gold-dim);
+}
+
+.lang-switch__btn.is-active {
+  filter: grayscale(0) opacity(1);
+  border-color: var(--gold);
+  transform: scale(1.08);
+}
+
+@media (max-width: 640px) {
+  .lang-switch { position: static; justify-content: center; margin-bottom: 20px; }
+}
+
+/* ---------------------------------------------------------
+   Header
+--------------------------------------------------------- */
+.page-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 32px;
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 14px;
+}
+
+.page-header h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.25;
+  margin: 0 0 16px;
+  background: linear-gradient(180deg, #fff 0%, var(--gold-bright) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lede {
+  color: var(--text-muted);
+  font-size: 15.5px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---------------------------------------------------------
+   Chart shell + legend
+--------------------------------------------------------- */
+.chart-shell {
+  position: relative;
+}
+
+.legend {
+  /* Fixed width regardless of language, so switching en/pt-BR/fr never
+     changes the box's size — only the text inside it reflows. */
+  flex: none;
+  width: 340px;
+  margin-left: 56px;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.legend ul {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend strong { color: var(--text); font-weight: 600; }
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+}
+.dot--all { background: var(--orange); box-shadow: 0 0 0 3px var(--orange-dim); }
+.dot--trinitarian { background: var(--green); box-shadow: 0 0 0 3px var(--green-dim); }
+
+.legend-note {
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+/* ---------------------------------------------------------
+   Diagram layout
+--------------------------------------------------------- */
+.diagram-fit {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.diagram {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 38px;
+  padding-top: 50px;
+  flex: none;
+  transform-origin: top center;
+}
+
+.connectors {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.connectors path {
+  fill: none;
+  stroke-width: 1.3;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.2s ease, stroke-width 0.2s ease, opacity 0.2s ease;
+  opacity: 0.5;
+}
+.connectors path.line-orange { stroke: var(--orange); }
+.connectors path.line-green { stroke: var(--green); }
+.connectors path.is-active.line-orange,
+.connectors path.is-traced.line-orange { stroke: var(--orange-bright); }
+.connectors path.is-active.line-green,
+.connectors path.is-traced.line-green { stroke: var(--green-bright); }
+.connectors path.is-active,
+.connectors path.is-traced {
+  stroke-width: 2.4;
+  opacity: 1;
+}
+.connectors path.is-traced {
+  filter: drop-shadow(0 0 3px rgba(224, 138, 60, 0.35));
+}
+.connectors marker path { stroke: none; }
+
+.tier {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px 18px;
+  width: 100%;
+}
+
+.tier-3 { padding-right: 160px; } /* keep room for the silver trowel branch */
+.tier-0 { gap: 20px; }
+
+/* ---------------------------------------------------------
+   Node card
+--------------------------------------------------------- */
+.node {
+  position: relative;
+  z-index: 2;
+  width: var(--node-w);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 16px 10px 0;
+}
+
+.node__icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255,255,255,0.06), transparent 60%),
+    var(--surface-raised);
+  border: 2px solid var(--orange);
+  box-shadow:
+    0 0 0 4px rgba(224,138,60,0.08),
+    0 8px 18px -8px rgba(0,0,0,0.6);
+  color: var(--orange-bright);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.node[data-faith="trinitarian"] .node__icon {
+  border-color: var(--green);
+  color: #8fe3b8;
+  box-shadow:
+    0 0 0 4px rgba(76,175,125,0.1),
+    0 8px 18px -8px rgba(0,0,0,0.6);
+}
+
+.node__icon svg { width: 46px; height: 46px; }
+
+/* Real emblem photos land on an ivory medallion plate, so a
+   white-background source image reads as an inset badge rather
+   than a clashing rectangle against the dark card. */
+.node__icon.has-logo {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 35% 28%, #fdfaf1, #ece3c8 70%, #d8cc9e 100%);
+}
+.node__icon.has-logo svg { display: none; }
+
+.node__logo {
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0.92) contrast(0.96);
+  transform: scale(1);
+  transition: filter 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: filter, transform;
+}
+
+.node:hover .node__logo,
+.node:focus-visible .node__logo,
+.node.is-active .node__logo,
+.node.is-traced .node__logo {
+  filter: grayscale(0) brightness(1) contrast(1.02);
+  transform: scale(1.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node__logo { transition: none; }
+}
+
+.node__label {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.32;
+  color: var(--text);
+  max-width: 140px;
+}
+
+.node[data-faith="trinitarian"] .node__label { color: #bdeed4; }
+
+.node {
+  cursor: pointer;
+}
+
+.node:hover .node__icon,
+.node.is-active .node__icon,
+.node.is-traced .node__icon {
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 0 6px rgba(224,138,60,0.16),
+    0 14px 26px -10px rgba(0,0,0,0.7);
+}
+
+.node.is-traced .node__icon {
+  border-color: var(--orange-bright);
+}
+.node.is-traced[data-faith="trinitarian"] .node__icon {
+  border-color: var(--green-bright);
+}
+
+.node--branch { position: relative; }
+
+.node--root .node__icon {
+  width: 130px;
+  height: 130px;
+  border-width: 3px;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255,255,255,0.08), transparent 60%),
+    var(--surface-raised);
+}
+.node--root .node__icon svg { width: 60px; height: 60px; }
+.node--root .node__icon.has-logo {
+  background:
+    radial-gradient(circle at 35% 28%, #fdfaf1, #ece3c8 70%, #d8cc9e 100%);
+}
+.node--root .node__label {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+
+/* ---------------------------------------------------------
+   Root tier / degrees
+--------------------------------------------------------- */
+.tier-0 {
+  align-items: center;
+  padding-top: 8px;
+}
+
+.degrees {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 11px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+  /* Fixed width sized for the longest translated line across all
+     three languages ("Entered Apprentice" / "Mestre Maçom"). A nested
+     flex "width: max-content" here computed unreliably (collapsed
+     narrower than the content), so use an explicit width instead. */
+  flex: none;
+  width: 200px;
+}
+.degrees li { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+.degrees span {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-weight: 600;
+  width: 20px;
+}
+
+/* ---------------------------------------------------------
+   Annotation note
+--------------------------------------------------------- */
+.note {
+  position: relative;
+  z-index: 2;
+  align-self: flex-end;
+  margin-right: 6%;
+  max-width: 260px;
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-align: center;
+}
+
+/* ---------------------------------------------------------
+   Footer
+--------------------------------------------------------- */
+.page-footer {
+  margin-top: 64px;
+  text-align: center;
+}
+.page-footer p {
+  color: var(--text-faint);
+  font-size: 12px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------------
+   Responsive
+--------------------------------------------------------- */
+/* The diagram — nodes, curved connectors, notes, and the legend beside
+   Craft Freemasonry — keeps its full layout at every viewport size;
+   app.js scales the whole composition down to fit the available
+   width/height like a single poster image, rather than reflowing into
+   a different mobile layout. */
+
+@media (prefers-reduced-motion: reduce) {
+  .node__icon { transition: none; }
+}

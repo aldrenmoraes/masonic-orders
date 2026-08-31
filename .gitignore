@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Node / tooling (kept for future SvelteKit migration)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+bun.lockb
+
+# Build output
+dist/
+build/
+.cache/
+.parcel-cache/
+.vite/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Misc
+*.tmp
+*.temp
